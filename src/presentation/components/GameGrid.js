@@ -1,31 +1,35 @@
 import { createGameTile } from './GameTile.js';
 
-export function renderGrid(containerId, data, lang, onTileClick) {
+export function renderGrid(containerId, data, lang, onTileClick, startFlipped = false) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
-    data.forEach(item => {
+    // Shuffle data for a real memory game experience
+    const shuffledData = [...data].sort(() => Math.random() - 0.5);
+
+    shuffledData.forEach(item => {
         const text = lang === 'en' ? item.en : item.es;
-        const tile = createGameTile(text, item.id, lang, onTileClick);
+        const tile = createGameTile(text, item.id, lang, onTileClick, startFlipped);
         container.appendChild(tile);
     });
 }
 
-export function updateTileState(containerId, id, state) {
-    const container = document.getElementById(containerId);
-    const tile = container.querySelector(`[data-id="${id}"]`);
-    if (tile) {
-        if (state === 'selected') tile.classList.add('selected');
-        if (state === 'unselected') tile.classList.remove('selected');
-        if (state === 'matched') {
-            tile.classList.remove('selected');
-            tile.classList.add('matched');
-        }
+export function setTileFlipped(element, isFlipped) {
+    if (isFlipped) {
+        element.classList.add('is-flipped');
+    } else {
+        element.classList.remove('is-flipped');
     }
 }
 
-export function clearGridSelections(containerId) {
-    const container = document.getElementById(containerId);
-    const selected = container.querySelectorAll('.selected');
-    selected.forEach(tile => tile.classList.remove('selected'));
+export function setTileMatched(element) {
+    element.classList.add('matched');
+}
+
+export function setTileMismatch(element, isMismatch) {
+    if (isMismatch) {
+        element.classList.add('mismatch');
+    } else {
+        element.classList.remove('mismatch');
+    }
 }

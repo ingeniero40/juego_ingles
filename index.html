@@ -3,60 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linguistic Quest | Interactive Language Learning</title>
-    <meta name="description" content="Master English vocabulary with our tactile, high-performance card matching game.">
+    <title>Linguistic Quest | Memory Challenge</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div id="app" class="app-container">
         <!-- Status Header -->
         <header class="status-header">
-            <div class="status-badge timer" id="timer-badge">
+            <div class="status-badge timer">
                 <i data-lucide="clock"></i>
                 <span id="timer-display">00:00</span>
             </div>
-            <div class="status-badge matches" id="matches-badge">
+            <div class="status-badge hits">
                 <i data-lucide="check-circle"></i>
-                <span id="matches-display">0 / 40</span>
+                <span id="hits-display">Hits: 0</span>
             </div>
+            <div class="status-badge misses">
+                <i data-lucide="alert-circle"></i>
+                <span id="misses-display">Misses: 0</span>
+            </div>
+            <button id="help-btn" class="status-badge help" style="cursor: pointer; border: 2px solid var(--spark-amber-container); color: var(--spark-amber-base);">
+                <i data-lucide="sparkles"></i>
+                <span id="helps-display">Helps: 3</span>
+            </button>
         </header>
 
-        <!-- Board Toggle Button -->
-        <button id="board-toggle" class="squishy-button">
-            Translation Board
-        </button>
+        <!-- Simultaneous Boards -->
+        <main class="boards-wrapper">
+            <section class="board-column english">
+                <h2 class="board-title">English</h2>
+                <div class="game-grid-tray">
+                    <div id="english-board" class="grid-container"></div>
+                </div>
+            </section>
 
-        <!-- Game Boards -->
-        <main id="game-container" class="game-grid-tray">
-            <!-- English Board (Active by default) -->
-            <div id="english-board" class="grid-container">
-                <!-- Tiles will be injected here -->
-            </div>
-            
-            <!-- Spanish Board (Hidden by default) -->
-            <div id="spanish-board" class="grid-container hidden spanish-board">
-                <!-- Tiles will be injected here -->
-            </div>
+            <section class="board-column spanish">
+                <h2 class="board-title">Spanish</h2>
+                <div class="game-grid-tray">
+                    <div id="spanish-board" class="grid-container"></div>
+                </div>
+            </section>
         </main>
 
-        <!-- Result Screen (Overlay) -->
-        <div id="result-overlay" class="hidden">
+        <!-- Result Overlay -->
+        <div id="result-overlay">
             <div class="result-card">
-                <h2>Well Done!</h2>
-                <div class="stats-grid">
+                <h2 style="color: var(--logic-blue-base); margin-bottom: 16px;">Victory!</h2>
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
                     <div class="stat-item">
-                        <label>Time</label>
-                        <span id="final-time">00:00</span>
+                        <label style="display: block; font-size: 10px; color: #666;">TIME</label>
+                        <span id="final-time" style="font-size: 20px; font-weight: 700;">00:00</span>
                     </div>
                     <div class="stat-item">
-                        <label>Accuracy</label>
-                        <span id="final-accuracy">0%</span>
-                    </div>
-                    <div class="stat-item">
-                        <label>XP Gained</label>
-                        <span id="final-xp">+0</span>
+                        <label style="display: block; font-size: 10px; color: #666;">ACCURACY</label>
+                        <span id="final-accuracy" style="font-size: 20px; font-weight: 700;">0%</span>
                     </div>
                 </div>
                 <button id="play-again" class="squishy-button">Play Again</button>
@@ -64,27 +65,18 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active" id="nav-menu">
+        <a href="#" class="nav-item active">
             <i data-lucide="layout"></i>
-            <span>Menu</span>
+            <span>Game Board</span>
         </a>
-        <a href="#" class="nav-item" id="nav-english">
-            <i data-lucide="languages"></i>
-            <span>English</span>
-        </a>
-        <a href="#" class="nav-item" id="nav-spanish">
-            <i data-lucide="globe"></i>
-            <span>Spanish</span>
+        <a href="#" class="nav-item">
+            <i data-lucide="award"></i>
+            <span>Results</span>
         </a>
     </nav>
 
-    <!-- Scripts -->
     <script type="module" src="main.js"></script>
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>

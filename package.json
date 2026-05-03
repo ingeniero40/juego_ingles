@@ -1,0 +1,15 @@
+{
+  "name": "linguistic-quest",
+  "version": "1.0.0",
+  "description": "Interactive English language learning memory game.",
+  "main": "main.js",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "author": "Héctor Cruz",
+  "license": "MIT"
+}

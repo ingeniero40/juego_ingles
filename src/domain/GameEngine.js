@@ -5,15 +5,17 @@ export class GameEngine {
     }
 
     reset() {
-        this.matches = 0;
+        this.hits = 0;
+        this.misses = 0;
+        this.helps = 3;
         this.totalPairs = this.vocabulary.length;
         this.startTime = null;
         this.elapsedTime = 0;
         this.timerInterval = null;
-        this.selectedEnglishId = null;
-        this.selectedSpanishId = null;
+        this.selectedEnglish = null; // { id, element }
+        this.selectedSpanish = null; // { id, element }
         this.matchedIds = new Set();
-        this.accuracy = { attempts: 0, successes: 0 };
+        this.isProcessing = false;
     }
 
     startTimer(callback) {
@@ -34,50 +36,88 @@ export class GameEngine {
         return `${mins}:${secs}`;
     }
 
-    selectEnglish(id) {
-        this.selectedEnglishId = id;
+    canSelectEnglish() {
+        return !this.isProcessing && !this.selectedEnglish;
+    }
+
+    canSelectSpanish() {
+        return !this.isProcessing && !this.selectedSpanish;
+    }
+
+    selectEnglish(id, element) {
+        if (!this.canSelectEnglish()) return null;
+        this.selectedEnglish = { id, element };
         return this.checkMatch();
     }
 
-    selectSpanish(id) {
-        this.selectedSpanishId = id;
+    selectSpanish(id, element) {
+        if (!this.canSelectSpanish()) return null;
+        this.selectedSpanish = { id, element };
         return this.checkMatch();
     }
 
     checkMatch() {
-        if (this.selectedEnglishId && this.selectedSpanishId) {
-            this.accuracy.attempts++;
-            const isMatch = this.selectedEnglishId === this.selectedSpanishId;
+        if (this.selectedEnglish && this.selectedSpanish) {
+            this.isProcessing = true;
+            const isMatch = this.selectedEnglish.id === this.selectedSpanish.id;
             
             if (isMatch) {
-                this.accuracy.successes++;
-                this.matchedIds.add(this.selectedEnglishId);
-                this.matches++;
+                this.hits++;
+                this.matchedIds.add(this.selectedEnglish.id);
+                const result = { 
+                    isMatch: true, 
+                    id: this.selectedEnglish.id,
+                    elements: [this.selectedEnglish.element, this.selectedSpanish.element]
+                };
                 this.clearSelection();
-                return { isMatch: true, id: this.selectedEnglishId };
+                this.isProcessing = false;
+                return result;
             } else {
+                this.misses++;
+                const result = { 
+                    isMatch: false, 
+                    elements: [this.selectedEnglish.element, this.selectedSpanish.element] 
+                };
                 this.clearSelection();
-                return { isMatch: false };
+                // We keep isProcessing = true until the controller flips them back
+                return result;
             }
+        }
+        return null; // Waiting for the second card
+    }
+
+    clearSelection() {
+        this.selectedEnglish = null;
+        this.selectedSpanish = null;
+    }
+
+    isGameOver() {
+        return this.hits === this.totalPairs;
+    }
+
+    useHelp() {
+        if (this.helps <= 0 || this.isProcessing) return null;
+        
+        let pairToHelp;
+        if (this.selectedEnglish) {
+            // Find the translation for the currently selected English card
+            pairToHelp = this.vocabulary.find(v => v.id === this.selectedEnglish.id);
+        } else {
+            // Find a random pair that hasn't been matched yet
+            const unmatched = this.vocabulary.filter(v => !this.matchedIds.has(v.id));
+            if (unmatched.length === 0) return null;
+            pairToHelp = unmatched[Math.floor(Math.random() * unmatched.length)];
+        }
+
+        if (pairToHelp) {
+            this.helps--;
+            return pairToHelp.id;
         }
         return null;
     }
 
-    clearSelection() {
-        this.selectedEnglishId = null;
-        this.selectedSpanishId = null;
-    }
-
-    isGameOver() {
-        return this.matches === this.totalPairs;
-    }
-
-    calculateXP() {
-        // Base XP per match + speed bonus + accuracy bonus
-        const baseXP = this.matches * 10;
-        const speedBonus = Math.max(0, 500 - this.elapsedTime);
-        const accuracyRate = this.accuracy.successes / this.accuracy.attempts;
-        const accuracyBonus = Math.floor(accuracyRate * 200);
-        return baseXP + speedBonus + accuracyBonus;
+    getAccuracy() {
+        const total = this.hits + this.misses;
+        return total === 0 ? 0 : Math.round((this.hits / total) * 100);
     }
 }

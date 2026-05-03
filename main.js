@@ -1,131 +1,128 @@
 import { vocabulary } from './src/infrastructure/vocabulary.js';
 import { GameEngine } from './src/domain/GameEngine.js';
-import { renderGrid, updateTileState, clearGridSelections } from './src/presentation/components/GameGrid.js';
+import { renderGrid, setTileFlipped, setTileMatched, setTileMismatch } from './src/presentation/components/GameGrid.js';
 
-// State Management
+// State
 const engine = new GameEngine(vocabulary);
-let currentBoard = 'en'; // 'en' or 'es'
 
 // DOM Elements
-const boardToggleBtn = document.getElementById('board-toggle');
-const englishBoard = document.getElementById('english-board');
-const spanishBoard = document.getElementById('spanish-board');
 const timerDisplay = document.getElementById('timer-display');
-const matchesDisplay = document.getElementById('matches-display');
+const hitsDisplay = document.getElementById('hits-display');
+const missesDisplay = document.getElementById('misses-display');
+const helpsDisplay = document.getElementById('helps-display');
+const helpBtn = document.getElementById('help-btn');
 const resultOverlay = document.getElementById('result-overlay');
 const playAgainBtn = document.getElementById('play-again');
 
-// Navigation
-const navEnglish = document.getElementById('nav-english');
-const navSpanish = document.getElementById('nav-spanish');
-const navMenu = document.getElementById('nav-menu');
-
-// Initialization
 function init() {
     engine.reset();
     
-    // Shuffle or prepare data? (Documentation says fixed grid, but randomization is better for replayability)
-    // For now, let's keep it fixed as per ARCHITECTURE.md "cuadrícula fija"
-    
-    renderGrid('english-board', vocabulary, 'en', handleTileClick);
-    renderGrid('spanish-board', vocabulary, 'es', handleTileClick);
+    renderGrid('english-board', vocabulary, 'en', handleTileClick, false);
+    renderGrid('spanish-board', vocabulary, 'es', handleTileClick, true);
     
     updateDisplays();
     engine.startTimer(time => {
         timerDisplay.textContent = time;
     });
 
-    // Reset UI
-    resultOverlay.classList.add('hidden');
-    switchToBoard('en');
+    resultOverlay.classList.remove('active');
 }
 
 function handleTileClick(id, lang, element) {
+    if (engine.isProcessing) return;
+
     if (lang === 'en') {
-        clearGridSelections('english-board');
-        updateTileState('english-board', id, 'selected');
-        const result = engine.selectEnglish(id);
-        handleMatchResult(result);
+        if (!engine.canSelectEnglish()) return;
+        element.classList.add('selected');
+        setTileFlipped(element, true);
+        const result = engine.selectEnglish(id, element);
+        if (result) handleMatchResult(result);
     } else {
-        clearGridSelections('spanish-board');
-        updateTileState('spanish-board', id, 'selected');
-        const result = engine.selectSpanish(id);
-        handleMatchResult(result);
+        if (!engine.canSelectSpanish()) return;
+        element.classList.add('selected');
+        // Spanish cards are already flipped (visible), so we just mark them selected
+        const result = engine.selectSpanish(id, element);
+        if (result) handleMatchResult(result);
     }
 }
 
 function handleMatchResult(result) {
-    if (!result) return;
-
     if (result.isMatch) {
-        updateTileState('english-board', result.id, 'matched');
-        updateTileState('spanish-board', result.id, 'matched');
+        result.elements.forEach(el => {
+            el.classList.remove('selected');
+            setTileMatched(el);
+        });
         updateDisplays();
         
         if (engine.isGameOver()) {
-            endGame();
+            setTimeout(endGame, 500);
         }
     } else {
-        // Visual feedback for mismatch could be added here
-        // For now, clear selections (already done in engine.clearSelection() and logic)
+        // Mismatch: show red border, then flip back
+        result.elements.forEach(el => {
+            el.classList.remove('selected');
+            setTileMismatch(el, true);
+        });
+        updateDisplays();
+
         setTimeout(() => {
-            clearGridSelections('english-board');
-            clearGridSelections('spanish-board');
-        }, 500);
+            result.elements.forEach(el => {
+                // Only flip back English cards
+                if (el.dataset.lang === 'en') {
+                    setTileFlipped(el, false);
+                }
+                setTileMismatch(el, false);
+            });
+            engine.isProcessing = false;
+        }, 1000);
     }
 }
 
 function updateDisplays() {
-    matchesDisplay.textContent = `${engine.matches} / ${engine.totalPairs}`;
+    hitsDisplay.textContent = `Hits: ${engine.hits}`;
+    missesDisplay.textContent = `Misses: ${engine.misses}`;
+    helpsDisplay.textContent = `Helps: ${engine.helps}`;
+    helpBtn.disabled = engine.helps <= 0;
 }
 
-function switchToBoard(lang) {
-    currentBoard = lang;
-    if (lang === 'en') {
-        englishBoard.classList.remove('hidden');
-        spanishBoard.classList.add('hidden');
-        boardToggleBtn.textContent = 'Translation Board';
-        boardToggleBtn.classList.remove('secondary');
-        navEnglish.classList.add('active');
-        navSpanish.classList.remove('active');
-    } else {
-        englishBoard.classList.add('hidden');
-        spanishBoard.classList.remove('hidden');
-        boardToggleBtn.textContent = 'English Board';
-        boardToggleBtn.classList.add('secondary');
-        navEnglish.classList.remove('active');
-        navSpanish.classList.add('active');
-    }
+function handleHelp() {
+    const pairId = engine.useHelp();
+    if (!pairId) return;
+
+    const enTile = document.querySelector(`#english-board [data-id="${pairId}"]`);
+    const esTile = document.querySelector(`#spanish-board [data-id="${pairId}"]`);
+
+    updateDisplays();
+
+    // Visual feedback
+    setTileFlipped(enTile, true);
+    enTile.classList.add('highlight-help');
+    esTile.classList.add('highlight-help');
+
+    // Remove highlight after 3 seconds
+    setTimeout(() => {
+        enTile.classList.remove('highlight-help');
+        esTile.classList.remove('highlight-help');
+        
+        // If not matched yet, flip English back if it wasn't the one selected by user
+        if (!engine.matchedIds.has(pairId)) {
+            // If it's NOT the user's currently selected English card, flip it back
+            if (!engine.selectedEnglish || engine.selectedEnglish.id !== pairId) {
+                setTileFlipped(enTile, false);
+            }
+        }
+    }, 3000);
 }
 
 function endGame() {
     engine.stopTimer();
-    
     document.getElementById('final-time').textContent = timerDisplay.textContent;
-    const accuracy = Math.round((engine.accuracy.successes / engine.accuracy.attempts) * 100);
-    document.getElementById('final-accuracy').textContent = `${accuracy}%`;
-    document.getElementById('final-xp').textContent = `+${engine.calculateXP()}`;
-    
-    resultOverlay.classList.remove('hidden');
-    resultOverlay.classList.add('active'); // CSS transition
+    document.getElementById('final-accuracy').textContent = `${engine.getAccuracy()}%`;
+    resultOverlay.classList.add('active');
 }
 
-// Event Listeners
-boardToggleBtn.addEventListener('click', () => {
-    switchToBoard(currentBoard === 'en' ? 'es' : 'en');
-});
-
-navEnglish.addEventListener('click', (e) => {
-    e.preventDefault();
-    switchToBoard('en');
-});
-
-navSpanish.addEventListener('click', (e) => {
-    e.preventDefault();
-    switchToBoard('es');
-});
-
 playAgainBtn.addEventListener('click', init);
+helpBtn.addEventListener('click', handleHelp);
 
 // Start Game
 init();
