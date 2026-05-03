@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Linguist Pro - English Word Board</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .squishy-button {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        .squishy-button:active {
+            transform: translateY(4px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "primary": "#004ac6",
+                      "on-surface-variant": "#434655",
+                      "secondary-fixed-dim": "#4edea3",
+                      "surface-container": "#e5eeff",
+                      "surface": "#f8f9ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-background": "#0b1c30",
+                      "primary-container": "#2563eb",
+                      "secondary-container": "#6cf8bb",
+                      "tertiary-container": "#996100",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#ffeedd",
+                      "on-primary-container": "#eeefff",
+                      "on-secondary-container": "#00714d",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "surface-container-low": "#eff4ff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#d3e4fe",
+                      "secondary": "#006c49",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#ffddb8",
+                      "error": "#ba1a1a",
+                      "tertiary": "#784b00",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "outline": "#737686",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-secondary-fixed": "#002113",
+                      "on-secondary-fixed-variant": "#005236",
+                      "surface-bright": "#f8f9ff",
+                      "outline-variant": "#c3c6d7",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "background": "#f8f9ff",
+                      "surface-container-high": "#dce9ff",
+                      "surface-dim": "#cbdbf5",
+                      "inverse-primary": "#b4c5ff",
+                      "on-surface": "#0b1c30",
+                      "on-tertiary-fixed": "#2a1700",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-tint": "#0053db",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "inverse-surface": "#213145",
+                      "on-primary-fixed": "#00174b",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#003ea8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-gap": "0.75rem",
+                      "grid-gutter": "1rem",
+                      "grid-margin": "2rem",
+                      "game-board-max-width": "1200px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Lexend"],
+                      "body-base": ["Lexend"],
+                      "headline-md": ["Lexend"],
+                      "title-lg": ["Lexend"],
+                      "label-sm": ["Lexend"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-base text-on-surface min-h-screen pb-24">
+<!-- Top Navigation Anchor -->
+<header class="bg-white dark:bg-slate-900 shadow-sm border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-4xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" data-alt="A clean, minimalist circular user avatar placeholder with a subtle blue gradient background. The style is modern and high-key, reflecting a professional language learning application interface. Soft lighting highlights the smooth surface of the icon." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9G35YvCfTWJVr51TcIMjZqpI0qXgGMfBb1QkUMJMQK-6Vs2VSIV6sbrcGtxBgA2u_AEuzEuyBhtXHKmsOY1HIDavNSSQwmYhhR6HCmq4EQ-Z-v7VCHxtv0sQsjdzhnUgx8zba11eTh1LGkxy2z8HBKPYiy38XT-jq5Sxt8hradQEtKkDf21AzL4_Xjv4GMDWqDTg9Ynwr3LTJXaz6hfRmsTEPgn_vr6b4-9QPTs8A_6JQ4jC6pL1jmjIaamHkN3pTCOsaMr6bPsQ"/>
+</div>
+<h1 class="font-lexend font-black text-blue-600 dark:text-blue-400 tracking-tighter text-lg">Linguist Pro</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-blue-600 dark:text-blue-400 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" data-icon="leaderboard">leaderboard</button>
+</div>
+</nav>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<!-- Game Header / Dashboard -->
+<section class="mb-8 bg-surface-container rounded-xl p-6 shadow-sm border border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-8">
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Timer</span>
+<div class="flex items-center gap-2 text-primary font-bold text-headline-md font-headline-md">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+<span>04:52</span>
+</div>
+</div>
+<div class="h-12 w-px bg-outline-variant hidden md:block"></div>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Matches</span>
+<div class="flex items-center gap-2 text-secondary font-bold text-headline-md font-headline-md">
+<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+<span>0/40</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3 w-full md:w-auto">
+<button class="squishy-button w-full md:w-auto bg-primary text-on-primary px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 border-b-4 border-primary-fixed-dim hover:brightness-110 active:border-b-0">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span>Translation Board</span>
+</button>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-base" data-icon="info">info</span>
+<span>Click an English word to find its match</span>
+</div>
+</div>
+</div>
+</section>
+<!-- The 4x10 Board Canvas -->
+<div class="relative bg-surface-container-low p-4 rounded-2xl shadow-inner border-2 border-surface-container-highest max-w-screen-md mx-auto">
+<!-- Vertical Progress Tracker -->
+<div class="absolute -left-12 top-0 bottom-0 flex flex-col justify-between py-6 hidden lg:flex">
+<div class="w-4 h-full bg-slate-200 rounded-full relative overflow-hidden">
+<div class="absolute bottom-0 left-0 right-0 bg-secondary-container h-[5%] transition-all duration-500 rounded-t-full"></div>
+</div>
+<div class="absolute -left-6 top-0 bottom-0 flex flex-col justify-between py-4 text-[10px] font-bold text-slate-400">
+<span>10</span><span>9</span><span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span>
+</div>
+</div>
+<!-- Game Grid -->
+<div class="grid grid-cols-4 gap-4 aspect-[4/10] md:aspect-auto">
+<!-- 40 Cards Loop Simulated -->
+<!-- First Row -->
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all group">
+<span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Begin</span>
+</button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all">
+<span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Understand</span>
+</button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all">
+<span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Search</span>
+</button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all">
+<span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Achieve</span>
+</button>
+<!-- Row 2 -->
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all">
+<span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Create</span>
+</button>
+<button class="squishy-button bg-primary-container border-2 border-primary text-on-primary-container rounded-lg p-3 shadow-lg scale-105 flex items-center justify-center">
+<span class="font-lexend font-bold text-sm md:text-base">Speak</span>
+</button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all">
+<span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Listen</span>
+</button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all">
+<span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Gather</span>
+</button>
+<!-- Row 3-10 Fill (Mocking remaining cards with consistent styling) -->
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Explore</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Define</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Select</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Refine</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Expand</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Reduce</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Follow</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Lead</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Design</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Build</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Test</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Launch</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Request</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Supply</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Manage</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Direct</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Finish</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Pause</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Repeat</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Reset</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Share</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Save</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Delete</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Edit</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">View</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Hide</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Lock</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Open</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Start</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Stop</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Move</span></button>
+<button class="squishy-button bg-white border border-outline-variant rounded-lg p-3 shadow-md flex items-center justify-center hover:bg-surface-container-highest transition-all"><span class="text-on-surface font-title-lg text-sm md:text-base font-lexend">Stay</span></button>
+</div>
+</div>
+</main>
+<!-- Success Feedback Overlay (Hidden by default, shown for example) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-full max-w-sm px-4 pointer-events-none">
+<div class="bg-secondary text-on-secondary rounded-xl p-4 shadow-xl flex items-center justify-between border-b-4 border-on-secondary-fixed-variant translate-y-20 opacity-0 transition-all duration-300">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="celebration">celebration</span>
+<span class="font-bold">Match Found! (+10 pts)</span>
+</div>
+<span class="font-lexend font-black">20%</span>
+</div>
+</div>
+<!-- Bottom Navigation Anchor -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-[0_-4px_12px_rgba(0,0,0,0.05)] border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined mb-1" data-icon="grid_view">grid_view</span>
+<span class="font-lexend text-xs font-semibold">Menu</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 rounded-2xl px-5 py-2">
+<span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+<span class="font-lexend text-xs font-semibold">English</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined mb-1" data-icon="translate">translate</span>
+<span class="font-lexend text-xs font-semibold">Spanish</span>
+</div>
+</nav>
+<!-- FAB for Quick Actions -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center squishy-button border-b-4 border-primary-fixed-dim z-40 active:border-b-0">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</body></html>

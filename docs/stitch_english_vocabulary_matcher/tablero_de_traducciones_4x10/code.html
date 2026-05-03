@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Linguist Pro - Spanish Board</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "primary": "#004ac6",
+                        "on-surface-variant": "#434655",
+                        "secondary-fixed-dim": "#4edea3",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#2563eb",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary-container": "#996100",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#ffeedd",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#006c49",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffddb8",
+                        "error": "#ba1a1a",
+                        "tertiary": "#784b00",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "outline": "#737686",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-bright": "#f8f9ff",
+                        "outline-variant": "#c3c6d7",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-dim": "#cbdbf5",
+                        "inverse-primary": "#b4c5ff",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-fixed": "#2a1700",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-tint": "#0053db",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#213145",
+                        "on-primary-fixed": "#00174b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#003ea8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "0.75rem",
+                        "grid-gutter": "1rem",
+                        "grid-margin": "2rem",
+                        "game-board-max-width": "1200px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Lexend"],
+                        "body-base": ["Lexend"],
+                        "headline-md": ["Lexend"],
+                        "title-lg": ["Lexend"],
+                        "label-sm": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .game-tile {
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .game-tile:active {
+            transform: translateY(2px);
+            box-shadow: none !important;
+        }
+        .squishy-button {
+            transition: all 0.1s;
+        }
+        .squishy-button:active {
+            transform: translateY(4px);
+            border-bottom-width: 0px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-4xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center border-2 border-primary">
+<img alt="Player avatar" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a young adult student with a friendly expression, set against a soft-focus academic background. The lighting is bright and natural, reflecting a modern light-mode interface. The color palette is clean with subtle blue highlights, conveying an atmosphere of dependability and intellectual curiosity within a high-end educational application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwGTSl1QdDqsUWiMAbSqz-qwmLj_oqUL1K8ypLOtI6gQnPoqME8LigfqlczqjdbIKpW495Q9ixvdIqD74oHs44Iqrl0zllggYedT5UIMVZQ7JgRG2TMWrOI4Ng-8XsuRR0wlOtzpizoXxwKz3j0gzzYxMMYI6CzGU_xRaKC1e25gEQtaWjR5hq78-9EPfrlb_r6OfhJcn_IgURQssIpMt1SuOocfOba9J7SBJ7AF6ElmXMa-EEbWgbV8GN6NuE7p4RuuPraJXqJ5E"/>
+</div>
+<h1 class="font-lexend font-black text-blue-600 dark:text-blue-400 tracking-tighter text-lg">Linguist Pro</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8 pb-32">
+<!-- Dashboard Header / Controls -->
+<section class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
+<div class="flex flex-col gap-2">
+<h2 class="font-headline-md text-headline-md text-on-background">Spanish Board</h2>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-high px-4 py-2 rounded-xl flex items-center gap-2 border border-outline-variant/30 shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="timer">timer</span>
+<span class="font-bold text-primary">04:12</span>
+</div>
+<div class="bg-secondary-container px-4 py-2 rounded-xl flex items-center gap-2 border border-on-secondary-container/10 shadow-sm">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="check_circle">check_circle</span>
+<span class="font-bold text-on-secondary-container">Matches: 0/40</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-label-sm font-label-sm text-outline">SWITCH LANGUAGE</span>
+<button class="squishy-button bg-primary text-on-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 border-b-4 border-on-primary-fixed-variant shadow-lg active:translate-y-1 active:border-b-0">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+                    English Board
+                </button>
+</div>
+</section>
+<!-- The Game Board (4x10 Grid) -->
+<div class="bg-surface-container-low p-6 rounded-3xl border border-outline-variant/20 shadow-inner">
+<div class="grid grid-cols-4 gap-4 max-w-full overflow-hidden">
+<!-- Row 1 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Empezar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Entender</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Buscar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Hablar</span>
+</button>
+<!-- Row 2 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Comer</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Escribir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Dormir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Pensar</span>
+</button>
+<!-- Row 3 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Poder</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Hacer</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Decir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Ver</span>
+</button>
+<!-- Row 4 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Ir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Dar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Saber</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Querer</span>
+</button>
+<!-- Row 5 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Llegar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Pasar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Deber</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Poner</span>
+</button>
+<!-- Row 6 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Parecer</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Quedar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Creer</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Hablar</span>
+</button>
+<!-- Row 7 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Llevar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Dejar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Seguir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Encontrar</span>
+</button>
+<!-- Row 8 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Llamar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Venir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Sentir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Tratar</span>
+</button>
+<!-- Row 9 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Mirar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Contar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Esperar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Perder</span>
+</button>
+<!-- Row 10 -->
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Caminar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Vivir</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Bailar</span>
+</button>
+<button class="game-tile bg-secondary-fixed/10 hover:bg-secondary-fixed/20 border border-secondary-fixed/30 p-4 rounded-xl text-center shadow-[0_4px_0_rgba(0,0,0,0.05)] flex flex-col items-center justify-center min-h-[80px]">
+<span class="font-bold text-on-secondary-fixed">Leer</span>
+</button>
+</div>
+</div>
+<!-- Vertical Progression Visualization -->
+<aside class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-1 items-center">
+<span class="text-label-sm font-label-sm text-outline mb-2">PROGRESS</span>
+<div class="flex flex-col gap-1">
+<div class="w-3 h-8 rounded-full bg-secondary-container"></div>
+<div class="w-3 h-8 rounded-full bg-secondary-container"></div>
+<div class="w-3 h-8 rounded-full bg-secondary-container"></div>
+<div class="w-3 h-8 rounded-full bg-slate-200"></div>
+<div class="w-3 h-8 rounded-full bg-slate-200"></div>
+<div class="w-3 h-8 rounded-full bg-slate-200"></div>
+<div class="w-3 h-8 rounded-full bg-slate-200"></div>
+<div class="w-3 h-8 rounded-full bg-slate-200"></div>
+<div class="w-3 h-8 rounded-full bg-slate-200"></div>
+<div class="w-3 h-8 rounded-full bg-slate-200"></div>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 dark:hover:text-blue-300 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-lexend text-xs font-semibold mt-1">Menu</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 dark:hover:text-blue-300 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-lexend text-xs font-semibold mt-1">English</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 rounded-2xl px-5 py-2 hover:text-blue-500 dark:hover:text-blue-300 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span class="font-lexend text-xs font-semibold mt-1">Spanish</span>
+</button>
+</nav>
+<!-- Success Feedback Overlay (Hidden by Default) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-full max-w-sm px-4 hidden">
+<div class="bg-secondary text-on-secondary p-4 rounded-xl flex items-center gap-3 shadow-2xl border-b-4 border-on-secondary-fixed-variant">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<div class="flex-1">
+<p class="font-bold">Perfect Match!</p>
+<p class="text-sm opacity-90">'Empezar' translates to 'To Start'</p>
+</div>
+<span class="material-symbols-outlined cursor-pointer" data-icon="close">close</span>
+</div>
+</div>
+</body></html>

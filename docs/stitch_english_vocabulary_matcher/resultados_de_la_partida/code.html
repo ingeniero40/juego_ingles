@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "primary": "#004ac6",
+                    "on-surface-variant": "#434655",
+                    "secondary-fixed-dim": "#4edea3",
+                    "surface-container": "#e5eeff",
+                    "surface": "#f8f9ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "primary-container": "#2563eb",
+                    "secondary-container": "#6cf8bb",
+                    "tertiary-container": "#996100",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#ffeedd",
+                    "on-primary-container": "#eeefff",
+                    "on-secondary-container": "#00714d",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary": "#006c49",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "error": "#ba1a1a",
+                    "tertiary": "#784b00",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline": "#737686",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary-fixed-variant": "#005236",
+                    "surface-bright": "#f8f9ff",
+                    "outline-variant": "#c3c6d7",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "background": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-dim": "#cbdbf5",
+                    "inverse-primary": "#b4c5ff",
+                    "on-surface": "#0b1c30",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-tint": "#0053db",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-surface": "#213145",
+                    "on-primary-fixed": "#00174b",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#003ea8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap": "0.75rem",
+                    "grid-gutter": "1rem",
+                    "grid-margin": "2rem",
+                    "game-board-max-width": "1200px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Lexend"],
+                    "body-base": ["Lexend"],
+                    "headline-md": ["Lexend"],
+                    "title-lg": ["Lexend"],
+                    "label-sm": ["Lexend"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .squishy-button {
+        transition: transform 0.1s, box-shadow 0.1s;
+      }
+      .squishy-button:active {
+        transform: translateY(4px);
+        box-shadow: none !important;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-base text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-white dark:bg-slate-900 shadow-sm border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-4xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border-2 border-primary-container">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A high-quality 3D rendered avatar of a friendly language student, featuring modern clean lines and soft lighting against a vibrant blue background. The style is consistent with a premium educational game application, using a professional and welcoming aesthetic with bright primary colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHe6ur1OYBJgN4jwyFw_zYRytMO1C4-Vt2xI-V9R4M1Qy0rUlJTUTBiqqwmtwnp2ub2DKIgJK8xexrRsFxP_iI3IUqxIwF9fYO3FYPNbHp3yTypxo64AlfTCmJnYBZuAfVJ6iWw7TK-l8LIUBy5u6pFeYfWb5jjtIh1tKsiHNtvShlr9H1sgtCGjO93jgdj3CNsE4uqr8VWNJZUu2ReMsX3_EDVVHW2SXNoVW9KPi5ifKkGA4POaT-lyvTOmHCoeHKORKgyxVERiY"/>
+</div>
+<h1 class="font-lexend font-black text-blue-600 dark:text-blue-400 tracking-tighter text-lg">Linguist Pro</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:translate-y-px">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-8 max-w-4xl mx-auto w-full">
+<!-- Success Content Container -->
+<div class="w-full space-y-8 flex flex-col items-center">
+<!-- Headline and Trophy Section -->
+<div class="text-center space-y-4">
+<div class="relative inline-block">
+<!-- Glow effect behind trophy -->
+<div class="absolute inset-0 bg-tertiary-fixed opacity-40 blur-3xl rounded-full"></div>
+<div class="relative w-48 h-48 md:w-64 md:h-64 mx-auto mb-6 transform -rotate-3">
+<img alt="Victory Trophy" class="w-full h-full object-contain drop-shadow-2xl" data-alt="A magnificent golden trophy with intricate classical details, sparkling under a brilliant warm spotlight. The background is a celebratory wash of soft blue and gold bokeh lights, creating a high-energy victory atmosphere. The style is hyper-realistic with a focus on metallic reflections and a joyful, triumphant mood fitting for a successful game completion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcuv8LvraBrs4eOKvXMXPwT1LcZ2Bolh5rCpQrDQ6QZCpw-55PRiDjCaips6zMEjuFLOgPgpDTsXSfG4UVs4O7V94vZOgq3tP0XCnG1N2sAfiDDNhs_lrHJuQ-DbFjon3yDN7s7R-yANthMnmoL913A09mFcSyufHnmGomYEUUoWDHnyZMht_O1dxO-WqJgjAUup9UQTahO2pEhNjjUew05t-H8rxLvBscuT0QykoDejyVE-FPMFELRqxHAwsiGf1Otdwg7lQukFU"/>
+</div>
+</div>
+<h2 class="font-display-lg text-display-lg text-primary text-center">Well Done!</h2>
+<p class="font-title-lg text-title-lg text-on-surface-variant opacity-80">You've mastered this lesson with flying colors!</p>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl">
+<!-- Time Card -->
+<div class="bg-white p-6 rounded-2xl shadow-[0_4px_0_0_rgba(203,219,245,1)] border border-neutral-200 flex flex-col items-center justify-center space-y-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="schedule">schedule</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Time</span>
+<span class="font-headline-md text-headline-md text-on-surface">4:25</span>
+</div>
+<!-- Accuracy Card -->
+<div class="bg-white p-6 rounded-2xl shadow-[0_4px_0_0_rgba(110,248,187,1)] border border-neutral-200 flex flex-col items-center justify-center space-y-2">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="verified">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Accuracy</span>
+<span class="font-headline-md text-headline-md text-on-surface">92%</span>
+</div>
+<!-- XP Card -->
+<div class="bg-white p-6 rounded-2xl shadow-[0_4px_0_0_rgba(255,221,184,1)] border border-neutral-200 flex flex-col items-center justify-center space-y-2">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="bolt">bolt</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">XP Earned</span>
+<span class="font-headline-md text-headline-md text-on-surface text-tertiary">+150</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 w-full max-w-md pt-4">
+<button class="squishy-button flex-1 bg-primary text-on-primary py-4 px-8 rounded-2xl font-title-lg text-title-lg shadow-[0_4px_0_0_#003ea8] hover:bg-on-primary-fixed-variant transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="replay">replay</span>
+                    Play Again
+                </button>
+<button class="squishy-button flex-1 bg-surface-container-highest text-on-surface py-4 px-8 rounded-2xl font-title-lg text-title-lg shadow-[0_4px_0_0_#cbdbf5] hover:bg-surface-dim transition-all flex items-center justify-center gap-2 border border-neutral-200">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                    Menu
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Hidden on Desktop) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-[0_-4px_12px_rgba(0,0,0,0.05)] border-t border-slate-200 dark:border-slate-800 rounded-t-3xl">
+<a class="flex flex-col items-center justify-center bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 rounded-2xl px-5 py-2 active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-lexend text-xs font-semibold">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-lexend text-xs font-semibold">English</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+<span class="font-lexend text-xs font-semibold">Spanish</span>
+</a>
+</nav>
+<!-- Contextual Success Chips (Bottom Corner) -->
+<div class="fixed bottom-32 right-8 hidden lg:block">
+<div class="bg-secondary-container text-on-secondary-container px-6 py-3 rounded-full shadow-lg flex items-center gap-3 border border-secondary transition-transform hover:-translate-y-1">
+<span class="material-symbols-outlined" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-title-lg text-title-lg">New Milestone Unlocked!</span>
+</div>
+</div>
+</body></html>

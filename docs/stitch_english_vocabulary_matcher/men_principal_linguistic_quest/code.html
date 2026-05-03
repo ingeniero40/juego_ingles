@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Linguistic Quest - Main Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "primary": "#004ac6",
+                        "on-surface-variant": "#434655",
+                        "secondary-fixed-dim": "#4edea3",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#2563eb",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary-container": "#996100",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#ffeedd",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#006c49",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffddb8",
+                        "error": "#ba1a1a",
+                        "tertiary": "#784b00",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "outline": "#737686",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-bright": "#f8f9ff",
+                        "outline-variant": "#c3c6d7",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-dim": "#cbdbf5",
+                        "inverse-primary": "#b4c5ff",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-fixed": "#2a1700",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-tint": "#0053db",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#213145",
+                        "on-primary-fixed": "#00174b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#003ea8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "0.75rem",
+                        "grid-gutter": "1rem",
+                        "grid-margin": "2rem",
+                        "game-board-max-width": "1200px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Lexend"],
+                        "body-base": ["Lexend"],
+                        "headline-md": ["Lexend"],
+                        "title-lg": ["Lexend"],
+                        "label-sm": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .squishy-button {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+        }
+        .squishy-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+        }
+        .game-card {
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 12px rgba(0, 74, 198, 0.08);
+        }
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 74, 198, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base">
+<!-- Top Navigation Anchor -->
+<header class="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-4xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border-2 border-primary">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A charming 3D stylized avatar of a friendly language learner wearing glasses and a blue hoodie. The avatar is set against a clean, vibrant blue background with soft lighting, matching the professional and playful UI aesthetic of the educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKiFBosPBJk3VHYIBV4Gxtgv8t5ialYbAuTqsZOrrQYYrSgCTxT9yZhe0NeSPeY1bPxXbih0Jqln9z-tWyRpKERzqITT3S0wcfBECCcbgbVx6PwhBivccy2XjTgIOEYd4pXf3my4Z3M9QnGPyz0fLsOW8YLsf06IivxOiw9iWdx2DcIUM-fzE-FfPIBlGDmCehvQTfBdHRFN9hvxQP93I6m5cdU5quXMdpTtAPbsBfgVwPEVCqPC4ddW9j8Orsir5s5qPLIAjeuDs"/>
+</div>
+<div class="flex flex-col">
+<span class="font-lexend font-black text-blue-600 dark:text-blue-400 tracking-tighter text-lg">Linguist Pro</span>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-low text-blue-600 dark:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:translate-y-px">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+</button>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-grid-margin py-8 pb-32">
+<!-- Profile & Progress Section -->
+<section class="mb-10 bg-white rounded-3xl p-6 shadow-sm border border-neutral-200">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="w-20 h-20 rounded-2xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-on-secondary-container" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-widest border-2 border-white">
+                            Lv 14
+                        </div>
+</div>
+<div>
+<h1 class="font-display-lg text-title-lg text-on-surface mb-1">Welcome back, Alex!</h1>
+<p class="font-body-base text-on-surface-variant text-sm">Keep up the streak! 12 days running.</p>
+</div>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<div class="flex-1 md:flex-none bg-surface-container-lowest border border-surface-variant rounded-2xl p-3 flex flex-col items-center justify-center min-w-[100px]">
+<span class="material-symbols-outlined text-tertiary mb-1" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-headline-md text-title-lg text-tertiary">1,240</span>
+<span class="font-label-sm text-[10px] uppercase text-outline">Total Stars</span>
+</div>
+<div class="flex-1 md:flex-none bg-surface-container-lowest border border-surface-variant rounded-2xl p-3 flex flex-col items-center justify-center min-w-[100px]">
+<span class="material-symbols-outlined text-error mb-1" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-headline-md text-title-lg text-error">12</span>
+<span class="font-label-sm text-[10px] uppercase text-outline">Day Streak</span>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-on-surface-variant">Daily Goal: 85% reached</span>
+<span class="font-label-sm text-primary font-bold">170/200 XP</span>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden p-1">
+<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</section>
+<!-- Main Title -->
+<div class="mb-8 flex items-center justify-between">
+<div>
+<h2 class="font-display-lg text-headline-md text-on-background">Linguistic Quest</h2>
+<p class="font-body-base text-on-surface-variant">Master English through playful challenges.</p>
+</div>
+<div class="hidden sm:flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full border border-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="flag" style="font-variation-settings: 'FILL' 1;">flag</span>
+<span class="font-label-sm text-primary font-bold">English (UK)</span>
+</div>
+</div>
+<!-- Bento Grid Category Layout -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 auto-rows-[160px]">
+<!-- Common Verbs (Large Card) -->
+<div class="md:col-span-2 md:row-span-2 game-card rounded-3xl bg-white border border-neutral-200 p-6 flex flex-col justify-between overflow-hidden relative group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+<div>
+<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h3 class="font-display-lg text-title-lg mb-2">Common Verbs</h3>
+<p class="font-body-base text-sm text-on-surface-variant max-w-[200px]">The essential building blocks of every sentence.</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-300"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-600">+12k</div>
+</div>
+<button class="squishy-button px-6 py-3 bg-primary text-white rounded-2xl font-bold flex items-center gap-2">
+                        Play
+                        <span class="material-symbols-outlined text-sm" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- At the Office -->
+<div class="md:col-span-2 game-card rounded-3xl bg-white border border-neutral-200 p-6 flex flex-col justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="business_center" style="font-variation-settings: 'FILL' 1;">business_center</span>
+</div>
+<div>
+<h3 class="font-title-lg">At the Office</h3>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Advanced</span>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<div class="flex gap-1">
+<div class="w-6 h-1 bg-secondary rounded-full"></div>
+<div class="w-6 h-1 bg-secondary rounded-full"></div>
+<div class="w-6 h-1 bg-surface-container rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Food & Drinks -->
+<div class="game-card rounded-3xl bg-white border border-neutral-200 p-5 flex flex-col items-center text-center justify-center">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-3xl" data-icon="restaurant">restaurant</span>
+</div>
+<h3 class="font-title-lg text-sm">Food &amp; Drinks</h3>
+</div>
+<!-- Travel & Maps -->
+<div class="game-card rounded-3xl bg-white border border-neutral-200 p-5 flex flex-col items-center text-center justify-center">
+<div class="w-16 h-16 rounded-full bg-error-container flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-on-error-container text-3xl" data-icon="explore">explore</span>
+</div>
+<h3 class="font-title-lg text-sm">Travel &amp; Maps</h3>
+</div>
+<!-- New Daily Challenge (Full Width for Desktop) -->
+<div class="md:col-span-4 game-card rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white relative overflow-hidden">
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between h-full">
+<div>
+<div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
+<span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+                            Live Now
+                        </div>
+<h3 class="font-display-lg text-title-lg mb-1">Idiom Expedition</h3>
+<p class="text-on-primary-container text-sm opacity-90">Unlock exclusive badges by mastering today's phrases.</p>
+</div>
+<button class="mt-4 md:mt-0 squishy-button px-8 py-4 bg-white text-primary rounded-2xl font-black text-sm uppercase tracking-wider">
+                        Start Quest
+                    </button>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute top-0 right-1/4 w-24 h-24 bg-indigo-400/20 rounded-full blur-2xl"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center justify-center bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 rounded-2xl px-5 py-2 active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-lexend text-xs font-semibold">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 dark:hover:text-blue-300 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="menu_book">menu_book</span>
+<span class="font-lexend text-xs font-semibold">English</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 dark:hover:text-blue-300 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined mb-0.5" data-icon="translate">translate</span>
+<span class="font-lexend text-xs font-semibold">Spanish</span>
+</a>
+</nav>
+<!-- Contextual FAB (Only on main dashboard) -->
+<button class="fixed bottom-24 right-6 w-16 h-16 bg-primary text-white rounded-2xl shadow-xl flex items-center justify-center squishy-button z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+</body></html>
