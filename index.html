@@ -46,21 +46,43 @@
             </section>
         </main>
 
+        <!-- Start Overlay -->
+        <div id="start-overlay" class="overlay">
+            <div class="overlay-content">
+                <h2 style="font-size: 2.2rem; color: var(--logic-blue-base); margin-bottom: 1.5rem;">Select Time Limit</h2>
+                <div class="time-options" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+                    <button class="cta-button time-opt" data-seconds="60">1 Minute</button>
+                    <button class="cta-button time-opt" data-seconds="120">2 Minutes</button>
+                    <button class="cta-button time-opt" data-seconds="300">5 Minutes</button>
+                    <button class="cta-button time-opt" data-seconds="0">No Limit</button>
+                </div>
+                <p style="font-size: 12px; opacity: 0.6;">Test your memory against the clock!</p>
+            </div>
+        </div>
+
         <!-- Result Overlay -->
-        <div id="result-overlay">
-            <div class="result-card">
+        <div id="result-overlay" class="overlay hidden">
+            <div class="result-card overlay-content">
                 <h2 style="color: var(--logic-blue-base); margin-bottom: 16px;">Victory!</h2>
-                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 8px;">
                     <div class="stat-item">
-                        <label style="display: block; font-size: 10px; color: #666;">TIME</label>
+                        <label style="display: block; font-size: 10px; color: #666; margin-bottom: 4px;">HITS</label>
+                        <span id="final-hits" style="font-size: 20px; font-weight: 700; color: var(--growth-green-base);">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <label style="display: block; font-size: 10px; color: #666; margin-bottom: 4px;">MISSES</label>
+                        <span id="final-misses" style="font-size: 20px; font-weight: 700; color: var(--error-red);">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <label style="display: block; font-size: 10px; color: #666; margin-bottom: 4px;">TIME</label>
                         <span id="final-time" style="font-size: 20px; font-weight: 700;">00:00</span>
                     </div>
                     <div class="stat-item">
-                        <label style="display: block; font-size: 10px; color: #666;">ACCURACY</label>
+                        <label style="display: block; font-size: 10px; color: #666; margin-bottom: 4px;">ACCURACY</label>
                         <span id="final-accuracy" style="font-size: 20px; font-weight: 700;">0%</span>
                     </div>
                 </div>
-                <button id="play-again" class="squishy-button">Play Again</button>
+                <button id="play-again" class="cta-button primary" style="margin-top: 24px;">Play Again</button>
             </div>
         </div>
     </div>

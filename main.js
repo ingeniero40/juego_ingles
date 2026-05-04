@@ -11,21 +11,30 @@ const hitsDisplay = document.getElementById('hits-display');
 const missesDisplay = document.getElementById('misses-display');
 const helpsDisplay = document.getElementById('helps-display');
 const helpBtn = document.getElementById('help-btn');
+const startOverlay = document.getElementById('start-overlay');
+const timeOptions = document.querySelectorAll('.time-opt');
 const resultOverlay = document.getElementById('result-overlay');
 const playAgainBtn = document.getElementById('play-again');
 
 function init() {
     engine.reset();
-    
     renderGrid('english-board', vocabulary, 'en', handleTileClick, false);
     renderGrid('spanish-board', vocabulary, 'es', handleTileClick, true);
-    
     updateDisplays();
-    engine.startTimer(time => {
-        timerDisplay.textContent = time;
-    });
-
+    
+    timerDisplay.textContent = '00:00';
     resultOverlay.classList.remove('active');
+    startOverlay.classList.remove('hidden');
+}
+
+function startGame(seconds) {
+    engine.timeLimit = seconds;
+    startOverlay.classList.add('hidden');
+    
+    engine.startTimer(
+        time => timerDisplay.textContent = time,
+        () => endGame(true) // onTimeUp
+    );
 }
 
 function handleTileClick(id, lang, element) {
@@ -114,8 +123,13 @@ function handleHelp() {
     }, 3000);
 }
 
-function endGame() {
+function endGame(isTimeUp = false) {
     engine.stopTimer();
+    const title = isTimeUp ? "Time's Up!" : "Victory!";
+    document.querySelector('#result-overlay h2').textContent = title;
+    
+    document.getElementById('final-hits').textContent = engine.hits;
+    document.getElementById('final-misses').textContent = engine.misses;
     document.getElementById('final-time').textContent = timerDisplay.textContent;
     document.getElementById('final-accuracy').textContent = `${engine.getAccuracy()}%`;
     resultOverlay.classList.add('active');
@@ -123,6 +137,13 @@ function endGame() {
 
 playAgainBtn.addEventListener('click', init);
 helpBtn.addEventListener('click', handleHelp);
+
+timeOptions.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const secs = parseInt(btn.dataset.seconds);
+        startGame(secs);
+    });
+});
 
 // Start Game
 init();

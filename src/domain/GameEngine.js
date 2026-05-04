@@ -11,6 +11,7 @@ export class GameEngine {
         this.totalPairs = this.vocabulary.length;
         this.startTime = null;
         this.elapsedTime = 0;
+        this.timeLimit = 0; // 0 means infinite/count-up
         this.timerInterval = null;
         this.selectedEnglish = null; // { id, element }
         this.selectedSpanish = null; // { id, element }
@@ -18,11 +19,28 @@ export class GameEngine {
         this.isProcessing = false;
     }
 
-    startTimer(callback) {
+    startTimer(callback, onTimeUp) {
         this.startTime = Date.now();
         this.timerInterval = setInterval(() => {
-            this.elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
-            callback(this.formatTime(this.elapsedTime));
+            if (this.timeLimit > 0) {
+                // Countdown Mode
+                const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
+                const remaining = this.timeLimit - elapsed;
+                
+                if (remaining <= 0) {
+                    this.elapsedTime = this.timeLimit;
+                    this.stopTimer();
+                    callback(this.formatTime(0));
+                    if (onTimeUp) onTimeUp();
+                } else {
+                    this.elapsedTime = elapsed;
+                    callback(this.formatTime(remaining));
+                }
+            } else {
+                // Count-up Mode
+                this.elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
+                callback(this.formatTime(this.elapsedTime));
+            }
         }, 1000);
     }
 
